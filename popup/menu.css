@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+:root {
+    --background-color: aquamarine;
+    --text-color: black;
+    --item-color: rgb(42, 130, 165);
+    --option-color: #fae042;
+    --option-background: #fae04252;
+
+    --textarea-color: ;
+    --textarea-background: azure;
+    --textarea-border: 2px solid darkslategray;
+
+    --error-background: maroon;
+    --error-text: #461e1e;
+}
+html, body, #popup-content {
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    background-color: blue;
+}
+#popup-content {
+    position: relative;
+    /* max-width: 300px; */
+    min-width: 270px;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 0.2em;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    user-select: none;
+}
+body:not(.errored) .error-message {
+    display: none;
+}
+
+.error-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--error-background);
+    width: 90%;
+    padding: 20px;
+    text-align: center;
+}
+.error-message p {
+    font-size: 1.5em;
+    margin: 0;
+}
+.error-message #error-content {
+    font-size: 0.9em;
+    color: var(--error-text);
+}
+
+#domain {
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+.input {
+    min-height: 2em;
+    padding: 6px 0.5em;
+    margin-bottom: 0.5em;
+    background-color: var(--item-color);
+}
+
+.label-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+.label-button a {
+    font-size: 0.8em;
+    color: gray;
+}
+
+.toggle {
+    display: flex;
+    flex-direction: row;
+    /* align-items: center; */
+    justify-content: space-between;
+}
+
+.toggle input[type="checkbox"] {
+    appearance: none;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    display: grid;
+    place-content: center;
+}
+
+.toggle input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em currentColor;
+}
+
+.toggle input[type="checkbox"]:checked::before {
+    transform: scale(1); 
+}
+
+.text, .text-custom, .textarea {
+    display: flex;
+    flex-direction: column;
+}
+
+/* TODO: Actually put a focus highlight in. */
+.text input:focus, .text-custom input:focus, .textarea {
+    border-color: transparent;
+    outline: 0;
+    box-shadow: none;
+}
+.text input, .text-custom span, .textarea textarea {
+    margin: 0.3em;
+    background-color: var(--textarea-background);
+    border: var(--textarea-border);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9em;
+    overflow-x: scroll;
+    display:flex;
+    justify-content: flex-start;
+    padding: 1px 2px 1px 5px;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    width: stretch;
+}
+.text-custom span {
+    color: gray;
+}
+.text-custom input {
+    background-color: inherit;
+    border: none;
+    padding: 0;
+    width: 12ch;
+    font-size: 0.9em;
+    color: black;
+}
+
+#regexLabel, #matchLabel {
+    display: none;
+}
+body.singlepage #regexLabel, body:not(.singlepage) #matchLabel {
+    display: inherit;
+}
+
+.textarea textarea {
+    resize: vertical;
+}
+.textarea #syntaxError {
+    padding-left: 1em;
+    color: red;
+    display: none;
+}
+.textarea#syntax #syntaxError {
+    display: inherit;
+}
+
+/* Options Dropdown */
+.options {
+    margin-bottom: 0.5em;
+}
+.options input.collapsible {
+    display: none;
+}
+.options label.collapsible {
+    display: block;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: 1.2em;
+    text-align: center;
+    padding: 0.5em;
+    color: #a77B0E;
+    background: #fae042;
+    cursor: pointer;
+    border-radius: 7px;
+    transition: all 0.25s ease-out;
+}
+.options label.collapsible:hover {
+    color: #7c5a0b;
+}
+.options label.collapsible::before {
+    content: " ";
+    display: inline-block;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid currentColor;
+    vertical-align: middle;
+    margin-right: 0.5em;
+    transform: translateY(-1px);
+    transition: transform .2s ease-out;
+}
+.options .collapsible-inner {
+    background-color: var(--option-background);
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    padding: 0.5em 1em;
+}
+.options .collapsible-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.25s ease-in-out
+}
+.options input.collapsible:checked + label.collapsible + .collapsible-content {
+    max-height: 100vh;
+}
+.options input.collapsible:checked + label.collapsible::before {
+    transform: rotate(90deg) translateX(-3px);
+}
+.options input.collapsible:checked + label.collapsible {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}

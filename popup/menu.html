@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="menu.css"/>
+</head>
+<body>
+    <form id="popup-content">
+        <h1 id="domain">Loading...</h1>
+        <label class="input toggle">
+            <label for="isActive">Enabled</label>
+            <input type="checkbox" id="isActive">
+        </label>
+        <div class="options">
+            <input id="options" class="collapsible" type="checkbox">
+            <label for="options" class="collapsible">Options</label>
+            <div class="collapsible-content">
+                <div class="collapsible-inner">
+                    <label class="input toggle">
+                        <label for="isSingle">Single Page</label>
+                        <input type="checkbox" id="isSingle">
+                    </label>
+                    <label class="input toggle">
+                        <label for="useMouse">Use Mouse Buttons</label>
+                        <input type="checkbox" id="useMouse" checked>
+                    </label>
+                    <label class="input toggle">
+                        <label for="useArrows">Use Arrowkeys</label>
+                        <input type="checkbox" id="useArrows" checked>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <label class="input text" id="matchLabel">
+            <label for="match">URL Match</label>
+            <input id="match" type="text" placeholder="example.com">
+        </label>
+        <label class="input text-custom" id="regexLabel">
+            <label for="regex">URL Regex</label>
+            <span>/<input id="regex" type="text" placeholder="\/chapter/\">/</span>
+        </label>
+        <label class="input textarea">
+            <div class="label-button">
+                <label for="getbtns">Get Buttons</label>
+                <a>Open Editor</a>
+            </div>
+            <textarea id="getbtns" placeholder="let backbtn, nextbtn
+return [backbtn, nextbtn]"></textarea>
+            <span id="syntaxError">* Syntax Error</span>
+        </label>
+        <div class="error-message">
+            <p>Something went wrong</p>
+            <p id="error-content"></p>
+        </div>
+    </form>
+    <script src="menu.js"></script>
+</body>
+</html>

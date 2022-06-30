@@ -1,0 +1,43 @@
+{
+    "manifest_version": 2,
+    "name": "Nav Buttons",
+    "version": "1",
+    "description": "Adds easy addition of nav buttons to sites",
+    "icons": {
+        "48": "icons/icon.png"
+    },
+    "probably_not_use": {
+        "content_scripts": [
+            {
+                "matches": [
+                "<all_urls>"
+                ],
+                "js": [
+                    "common.js"
+                ]
+            }
+        ]
+    },
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "browser_action": {
+        "default_icon": "icons/icon.png",
+        "default_title": "Nav Buttons",
+        "default_popup": "popup/menu.html"
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "navbuttons@pennyjim.com"
+        }
+    },
+    "permissions": [
+        "activeTab",
+        "storage",
+        "unlimitedStorage",
+        "<all_urls>"
+    ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+}
